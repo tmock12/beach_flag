@@ -2,17 +2,20 @@ defmodule BeachFlagTextParser do
   @moduledoc """
   Documentation for `BeachFlagTextParser`.
   """
+  def flags do
+    beach_flag_sms_xml()
+    |> File.stream!()
+    |> Stream.map(&parse_row_xml/1)
+    |> Stream.reject(&is_nil/1)
+    |> Enum.to_list()
+  end
 
-  @doc """
-  Hello world.
+  def beach_flag_sms_xml do
+    Application.app_dir(:beach_flag_text_parser, "/priv/sms.xml")
+  end
 
-  ## Examples
-
-      iex> BeachFlagTextParser.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def parse_row_xml(row) do
+    regex = ~r/.+:\s(?<color>.+)\sflags.+date_sent="(?<unix_time>\d+)/i
+    Regex.named_captures(regex, row)
   end
 end
