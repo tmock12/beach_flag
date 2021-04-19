@@ -1,6 +1,6 @@
-defmodule BeachFlagTextParser do
+defmodule BeachFlag do
   @moduledoc """
-  Documentation for `BeachFlagTextParser`.
+  Documentation for `BeachFlag`.
   """
   def flags do
     beach_flag_sms_xml()
@@ -11,7 +11,7 @@ defmodule BeachFlagTextParser do
   end
 
   def beach_flag_sms_xml do
-    Application.app_dir(:beach_flag_text_parser, "/priv/sms.xml")
+    Application.app_dir(:beach_flag, "/priv/sms.xml")
   end
 
   def parse_row_xml(row) do

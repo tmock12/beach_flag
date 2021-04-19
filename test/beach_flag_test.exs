@@ -1,9 +1,9 @@
-defmodule BeachFlagTextParserTest do
+defmodule BeachFlagTest do
   use ExUnit.Case
-  doctest BeachFlagTextParser
+  doctest BeachFlag
 
   test "flags/0" do
-    [first | _rest] = BeachFlagTextParser.flags()
+    [first | _rest] = BeachFlag.flags()
 
     assert first["color"] == "Yellow"
     assert first["unix_time"] == "1579364503000"
@@ -17,7 +17,7 @@ defmodule BeachFlagTextParserTest do
       assert %{
                "color" => "Double Red",
                "unix_time" => "1581092313000"
-             } = BeachFlagTextParser.parse_row_xml(row)
+             } = BeachFlag.parse_row_xml(row)
     end
 
     test "parsing yellow flag message" do
@@ -27,7 +27,7 @@ defmodule BeachFlagTextParserTest do
       assert %{
                "color" => "Yellow",
                "unix_time" => "1580660308000"
-             } = BeachFlagTextParser.parse_row_xml(row)
+             } = BeachFlag.parse_row_xml(row)
     end
 
     test "parsing covid message" do
@@ -37,7 +37,7 @@ defmodule BeachFlagTextParserTest do
       assert %{
                "color" => "double red",
                "unix_time" => "1585754759000"
-             } = BeachFlagTextParser.parse_row_xml(row)
+             } = BeachFlag.parse_row_xml(row)
     end
   end
 end

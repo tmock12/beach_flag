@@ -1,9 +1,9 @@
-defmodule BeachFlagTextParser.MixProject do
+defmodule BeachFlag.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :beach_flag_text_parser,
+      app: :beach_flag,
       version: "0.1.0",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,

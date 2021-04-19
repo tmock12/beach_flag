@@ -20,7 +20,7 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-beach_flag_text_parser-*.tar
+beach_flag-*.tar
 
 
 # Temporary files for e.g. tests
