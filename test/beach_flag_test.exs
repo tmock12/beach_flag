@@ -10,6 +10,19 @@ defmodule BeachFlagTest do
     assert first["date"] == ~D[2020-01-18]
   end
 
+  describe "in_month/1" do
+    test "filters flags by month and year" do
+      [in_month, _different_month, _different_year] =
+        flags = [
+          %{"date" => ~D[2021-01-10]},
+          %{"date" => ~D[2021-02-10]},
+          %{"date" => ~D[2020-01-10]}
+        ]
+
+      assert [^in_month] = BeachFlag.in_month(flags, ~D[2021-01-01])
+    end
+  end
+
   describe "parse_row_xml/1" do
     test "parsing double red flag message" do
       row =

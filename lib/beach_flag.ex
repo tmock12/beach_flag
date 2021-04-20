@@ -11,6 +11,18 @@ defmodule BeachFlag do
     |> Enum.to_list()
   end
 
+  @doc """
+  Find flags in the same month as date
+  """
+  @spec in_month(list(%{required(String.t()) => Date.t()}), Date.t()) :: list()
+  def in_month(flags, %Date{year: year, month: month}) do
+    flags
+    |> Enum.filter(fn
+      %{"date" => %{year: ^year, month: ^month}} -> true
+      _ -> false
+    end)
+  end
+
   def beach_flag_sms_xml do
     Application.app_dir(:beach_flag, "/priv/sms.xml")
   end
