@@ -7,6 +7,7 @@ defmodule BeachFlagTest do
 
     assert first["color"] == "Yellow"
     assert first["unix_time"] == "1579364503000"
+    assert first["date"] == ~D[2020-01-18]
   end
 
   describe "parse_row_xml/1" do
