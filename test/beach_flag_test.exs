@@ -23,6 +23,19 @@ defmodule BeachFlagTest do
     end
   end
 
+  describe "in_range/1" do
+    test "filters flags by start and end date" do
+      [in_range, _before_range, _after_range] =
+        flags = [
+          %{"date" => ~D[2021-01-10]},
+          %{"date" => ~D[2021-01-05]},
+          %{"date" => ~D[2021-01-15]}
+        ]
+
+      assert [^in_range] = BeachFlag.in_range(flags, ~D[2021-01-06], ~D[2021-01-14])
+    end
+  end
+
   describe "parse_row_xml/1" do
     test "parsing double red flag message" do
       row =

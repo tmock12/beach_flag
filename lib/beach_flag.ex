@@ -23,6 +23,17 @@ defmodule BeachFlag do
     end)
   end
 
+  @doc """
+  Find flags between two dates
+  """
+  @spec in_range(list(%{required(String.t()) => Date.t()}), Date.t(), Date.t()) :: list()
+  def in_range(flags, %Date{} = start_date, %Date{} = end_date) do
+    range = Date.range(start_date, end_date)
+
+    flags
+    |> Enum.filter(&Enum.member?(range, &1["date"]))
+  end
+
   def beach_flag_sms_xml do
     Application.app_dir(:beach_flag, "/priv/sms.xml")
   end
